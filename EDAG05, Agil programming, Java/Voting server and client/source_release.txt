@@ -1,0 +1,69 @@
+--SOURCE RELEASE--
+Date: 4/12/2020 (end of iteration 3).
+
+
+
+1. Start server by opening terminal and navigate to team3/server folder.
+2. Type: "gradlew run" or "./gradlew run"
+
+
+
+---TEST SERVER FUNCTIONALITY WITH POSTMAN---
+1. Open POSTMAN and create a POST call by typing: "http://localhost:4567/elections"
+With the following body:
+
+{
+    "description": "Best motion picture in 2019",
+    "startTime": "2020-11-02 10:15:00",
+    "finishTime": "2020-11-23 15:00:00",
+    "administratorEmail": "oscar.juror@ampas.org",
+    "voters": [
+        {"email": "Charlize.Theron@ampas.org"},
+        {"email": "Cynthia.Erivo@ampas.org"},
+        {"email": "Emma.Stone@ampas.org"},
+        {"email": "Frances.McDormand@ampas.org"},
+        {"email": "Glenn.Close@ampas.org"},
+        {"email": "Isabelle.Huppert@ampas.org"},
+        {"email": "Lady.Gaga@ampas.org"},
+        {"email": "Margot.Robbie@ampas.org"},
+        {"email": "Melissa.McCarthy@ampas.org"},
+        {"email": "Meryl.Streep@ampas.org"},
+        {"email": "Natalie.Portman@ampas.org"},
+        {"email": "Olivia.Colman@ampas.org"},
+        {"email": "Renee.Zellweger@ampas.org"},
+        {"email": "Ruth.Negga@ampas.org"},
+        {"email": "Sally.Hawkins@ampas.org"},
+        {"email": "Saoirse.Ronan@ampas.org"},
+        {"email": "Scarlett.Johansson@ampas.org"},
+        {"email": "Yalitza.Aparicio@ampas.org"}
+    ],
+    "candidates": [
+        {"name": "1917"},
+        {"name": "Ford v Ferrari"},
+        {"name": "Jojo Rabbit"},
+        {"name": "Joker"},
+        {"name": "Little Women"},
+        {"name": "Marriage Story"},
+        {"name": "Once Upon a Time in Hollywood"},
+        {"name": "Parasite"},
+        {"name": "The Irishman"}
+    ]
+}
+
+POSTMAN will return following call with a random ID: "Location: /elections/election-id"
+
+2. Make a new call in POSTMAN by using GET: "http://localhost:4567/elections/election-id"
+
+3. Make a new call in POSTMAN by using GET: "http://localhost:4567/elections/election-id/voters"
+
+All other endpoints are still work in progress (WIP).
+
+
+
+---RUNNING CLIENT---
+1. Client can only be run in your code editor for now. Open new project -> team3/client set as root folder.
+2. Run App.java.
+3. Options presented by client (work in progress):
+	- add votercard
+	- list votercards
+	- vote for candidate

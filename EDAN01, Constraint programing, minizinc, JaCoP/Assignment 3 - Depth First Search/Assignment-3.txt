@@ -1,0 +1,44 @@
+In this mandatory assignment you are to implement a search strategy in java for the JaCoP CLP library.
+
+The file SimpleDFS.java contains a simple but fully functional depth first search (DFS). 
+It implements the basic functionality of DFS and Branch-and-Bound for minimization. The program is very simple
+ since it makes it possible to select variables based on the order defined by the variable vector and it always 
+assigns a minimal value to each variable.
+
+You can try the search on the provided example, Golomb.java. It is minimization example and it is described,
+ for example here (Links to an external site.).
+
+In this assignment you have to change the behavior of this search. You are to implement a split search that 
+selects a variable, x, based on input order, as it is done in SimpleDFS, but then narrows the domain of the 
+variable without assigning a single value to the selected variable. Instead the domain is split around the 
+middle point, c, of the domain, that is c = (x.min() + x.max())/2.
+
+The two search strategies do the following selections:
+
+The first search strategy makes a choice point which first tries the lower half of the selected variable x:
+first choice x ≤ c, and if this fails
+second choice: x > c, the negation of x ≤ c
+The second search strategy first tries the upper half of the selected variable x:
+first choice x ≥ c, and if this fails
+second choice: x < c, the negation of x ≥ c.
+Task 1: implement search strategy 1.
+
+Task 2: implement search strategy 2.
+
+Task 3: Experiment with different variable selection methods and select the best method for the golomb example. 
+Report the following statistics for the search (requires some code in the search):
+
+total number of search nodes
+number of wrong decisions
+Task 4: Present your solution for the lab assistant during your time slot at the lab session. 
+
+Task 5: When the lab assistant is happy with your solution, submit it here (click on the "Submit Assignment" 
+button in the upper right corner and submit the files in the box that appears bellow).
+
+ 
+
+Files: SimpleDFS.javaPreview the document, Golom.javaPreview the document
+
+Hint: The class SimpleDFS has an attribute trace. Setting this to true forces the search to output current 
+search variables every time the search enters a new search node. It might help you to find errors in your 
+implementation.

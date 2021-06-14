@@ -1,0 +1,12 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
+
+# Ignore mac file
+.DS_Store
+
+# Ignore local files
+.idea
+app/.idea

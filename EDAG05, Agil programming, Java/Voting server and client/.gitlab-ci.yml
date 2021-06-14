@@ -1,0 +1,39 @@
+stages:
+  - build
+  - test
+  - publish
+
+default:
+  image: openjdk:12-alpine
+  before_script:
+    - echo Hello World
+
+build:
+  stage: build
+  image: gradle:jdk15
+  artifacts:
+    paths:
+      - server/app/build/libs/shadow-all.jar
+    expire_in: 1 day
+  script:
+    - cd server; ./gradlew shadowJar; cd ..; cd client; ./gradlew shadowJar; cd ..
+    - gradle build
+
+print:
+  script:
+    - echo Print job
+
+analyze:
+  image: gradle:jdk15
+  script: cd server; ./gradlew check; cd ..; cd client; ./gradlew check; cd ..
+
+docker:
+  image: docker:19.03.12
+  stage: publish
+  when: on_success
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $IMAGE_TAG server/app/
+    - docker push $IMAGE_TAG

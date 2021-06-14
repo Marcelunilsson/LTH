@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\Marcel\\Studier LTH\\EDAN01, Constraint programing\\jacop-4.7.0.jar"
+    ]
+}

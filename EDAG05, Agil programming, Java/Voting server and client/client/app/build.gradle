@@ -1,0 +1,60 @@
+
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+
+    id 'checkstyle'
+    id 'com.github.sherter.google-java-format' version '0.9'
+}
+
+googleJavaFormat {
+    toolVersion = '1.8'
+}
+
+repositories {
+    // Use JCenter for resolving dependencies.
+    jcenter()
+}
+
+checkstyle {
+    toolVersion = '8.36.2'
+    configFile file('checkstyle.xml')
+}
+
+dependencies {
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:29.0-jre'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+}
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'client.App'
+}
+
+tasks.named('test') {
+    // Use junit platform for unit tests.
+    useJUnitPlatform()
+}
+
+
+// For building a fat jar:
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'client.App'
+    }
+}
+
+shadowJar {
+    baseName = 'shadow'
+}
